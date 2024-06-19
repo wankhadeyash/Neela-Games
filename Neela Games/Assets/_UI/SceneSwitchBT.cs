@@ -13,5 +13,10 @@ namespace NeelaGames.AnimalRescue {
         {
             GameManager.Instance.LoadLevel(sceneIndexToLoad);
         }
+
+        public void ReloadScene() 
+        {
+            GameManager.Instance.RestartLevel();
+        }
     }
 }

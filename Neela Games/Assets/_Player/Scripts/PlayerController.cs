@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace NeelaGames.AnimalRescue
 {
-    public class AnimalController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         PlayerInput playerInput;
         public LayerMask backgroundMask;
@@ -77,5 +77,13 @@ namespace NeelaGames.AnimalRescue
 
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Destination") 
+            {
+                Debug.Log("Level Completed");
+                GameManager.Instance.LevelCompleted();
+            }
+        }
     }
 }
