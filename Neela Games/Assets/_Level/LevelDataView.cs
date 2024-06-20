@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using TMPro; // Namespace for TextMeshPro
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; // Namespace for Unity UI elements
 
 namespace NeelaGames.AnimalRescue
 {
+    // This class is responsible for displaying level data in the UI.
     public class LevelDataView : MonoBehaviour
     {
-        public TextMeshProUGUI difficutlyText;
+        // Reference to the TextMeshProUGUI component that displays the level difficulty.
+        public TextMeshProUGUI difficultyText;
 
-        public void SetData(LevelDataSO data) 
+        // Method to set the data in the view from the provided LevelDataSO.
+        public void SetData(LevelDataSO data)
         {
-            difficutlyText.text = data.levelDiffculty.ToString();
+            // Set the text of the difficultyText to the string representation of the level difficulty.
+            difficultyText.text = data.levelDifficulty.ToString();
         }
     }
 }
