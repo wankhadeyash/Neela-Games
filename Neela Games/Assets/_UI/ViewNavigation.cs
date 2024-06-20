@@ -4,26 +4,23 @@ using UnityEngine;
 
 namespace NeelaGames.AnimalRescue
 {
+    // This class handles navigation between different views in the game.
     public class ViewNavigation : MonoBehaviour
     {
+        // Reference to the current view GameObject.
         public GameObject currentView;
+
+        // Reference to the view GameObject to navigate to.
         public GameObject viewToNavigate;
-        // Start is called before the first frame update
-        void Start()
+
+        // Method to navigate from the current view to the specified view.
+        public void NavigateToView()
         {
+            // Activate the view to navigate to.
+            viewToNavigate.SetActive(true);
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        public void NavigateToView() 
-        {
-            viewToNavigate.gameObject.SetActive(true);
-            currentView.gameObject.SetActive(false);
+            // Deactivate the current view.
+            currentView.SetActive(false);
         }
     }
 }
