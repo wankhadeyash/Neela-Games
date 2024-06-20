@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndexToLoad: 0
+  loadNextScene: 1
 --- !u!1 &3473566417239489957
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndexToLoad: 1
+  loadNextScene: 0
 --- !u!1 &4721136404554149380
 GameObject:
   m_ObjectHideFlags: 0
