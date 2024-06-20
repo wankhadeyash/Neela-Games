@@ -5,83 +5,83 @@ using UnityEngine.InputSystem;
 
 namespace NeelaGames.AnimalRescue
 {
+    // This class controls the player's movement and interactions.
     public class PlayerController : MonoBehaviour
     {
+        // Reference to the PlayerInput component.
         PlayerInput playerInput;
+
+        // Layer mask to identify background objects.
         public LayerMask backgroundMask;
 
+        // Called when the script instance is being loaded.
         private void Awake()
         {
+            // Get the PlayerInput component attached to the game object.
             playerInput = GetComponent<PlayerInput>();
         }
 
-        private void OnEnable()
-        {
-
-        }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        // Method to handle player movement based on input actions.
         public void Move(InputAction.CallbackContext context)
         {
+            // Check if the input action was performed.
             if (context.performed)
             {
-
+                // Log the input value for debugging purposes.
                 Debug.Log(context.ReadValue<Vector2>());
-                Vector2 input = context.ReadValue<Vector2>();//x-> 1, -1  y -> 1, -1
 
+                // Read the input vector.
+                Vector2 input = context.ReadValue<Vector2>(); // x -> 1, -1  y -> 1, -1
+
+                // Store the current position.
                 Vector2 newPos = transform.position;
 
-
-
-                //Moving up
+                // Moving up
                 if (input == Vector2.up && !Physics2D.OverlapCircle(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), 0.25f, backgroundMask))
                 {
                     newPos.y += 1;
                 }
-                //Moving Down
+                // Moving down
                 if (input == Vector2.down && !Physics2D.OverlapCircle(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), 0.25f, backgroundMask))
                 {
                     newPos.y -= 1;
                 }
-                //Moving Right
+                // Moving right
                 if (input == Vector2.right && !Physics2D.OverlapCircle(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), 0.25f, backgroundMask))
                 {
                     newPos.x += 1;
                 }
-                //Moving Left
+                // Moving left
                 if (input == Vector2.left && !Physics2D.OverlapCircle(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), 0.25f, backgroundMask))
                 {
                     newPos.x -= 1;
                 }
+
+                // Update the player's position.
                 transform.position = newPos;
             }
         }
 
+        // Called when the game object is selected in the Unity editor.
         private void OnDrawGizmosSelected()
         {
+            // Draw wire spheres at the positions where movement is checked.
             Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), 0.25f);
             Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), 0.25f);
-
             Gizmos.DrawWireSphere(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), 0.25f);
             Gizmos.DrawWireSphere(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), 0.25f);
-
         }
 
+        // Called when another collider enters the trigger collider attached to this object.
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            // Log the tag and name of the collided object for debugging purposes.
             Debug.Log(collision.tag + collision.gameObject.name);
-            if (collision.tag == "Destination") 
+
+            // Check if the collided object has the tag "Destination".
+            if (collision.tag == "Destination")
             {
+                // Log level completion and notify the GameManager.
                 Debug.Log("Level Completed");
                 GameManager.Instance.LevelCompleted();
             }
